@@ -12,7 +12,7 @@ npx openskills install git@github.com:<your-org-or-user>/skills.git
 
 ```text
 skills/
-├── oss/                         # Open-source general skills
+├── opensource/                  # Open-source general skills
 │   ├── oss-code-review/
 │   │   ├── SKILL.md
 │   │   ├── agents/openai.yaml
@@ -30,7 +30,7 @@ OpenSkills discovers every directory that contains a `SKILL.md`, so adding a new
 
 ## Naming Convention
 
-- Keep first-level category fixed as `oss`, `platform`, `business`.
+- Keep first-level category fixed as `opensource`, `platform`, `business`.
 - Ensure each skill directory name is globally unique in the repo.
 - Use prefixes to avoid name collisions in client install dirs:
   - `oss-...` for open-source skills
