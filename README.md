@@ -13,12 +13,6 @@ npx openskills install git@github.com:<your-org-or-user>/skills.git
 ```text
 skills/
 ├── opensource/                  # Open-source general skills
-│   ├── code-review/
-│   │   ├── SKILL.md
-│   │   ├── agents/openai.yaml
-│   │   └── references/review-checklist.md
-│   ├── docs-writer/
-│   ├── frontend-design/
 │   └── skill-creator/
 └── internal/                    # Internal company skills
     ├── apollo/                  # Frontend team
