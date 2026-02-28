@@ -3,8 +3,14 @@ import skills from './data/skills.json';
 import skillBriefZh from './data/skill-brief-zh.json';
 
 const CATEGORY_LABELS = {
-  opensource: 'OpenSource Skills',
-  internal: 'Internal Skills',
+  all: '全部',
+  opensource: '开源',
+  internal: '内部',
+};
+
+const CATEGORY_GROUP_TITLES = {
+  opensource: '开源技能',
+  internal: '内部技能',
 };
 
 const MENU_ITEMS = [
@@ -105,7 +111,7 @@ function App() {
   }, [activeCategory, filteredSkills]);
 
   const renderSkillCard = (skill, index, keyPrefix = activeCategory) => {
-    const fullDescription = skill.description || 'No description';
+    const fullDescription = skill.description || '暂无描述';
     const briefZh =
       skill.category === 'opensource' ? skillBriefZh[skill.name] || '' : '';
 
@@ -124,8 +130,8 @@ function App() {
         </div>
 
         <div className="badge-row">
-          <span className="category-pill">{skill.category}</span>
-          {skill.team ? <span className="meta">team: {skill.team}</span> : null}
+          <span className="category-pill">{CATEGORY_LABELS[skill.category] || skill.category}</span>
+          {skill.team ? <span className="meta">团队：{skill.team}</span> : null}
         </div>
 
         <div className="desc-wrap">
@@ -156,7 +162,7 @@ function App() {
             type="text"
             value={query}
             onChange={(event) => setQuery(event.target.value)}
-            placeholder="Search with keywords"
+            placeholder="请输入关键词搜索"
           />
         </div>
 
@@ -168,24 +174,19 @@ function App() {
               className={`tag ${activeCategory === category ? 'tag-active' : ''}`}
               onClick={() => setActiveCategory(category)}
             >
-              {category}
+              {CATEGORY_LABELS[category] || category}
             </button>
           ))}
         </div>
 
         <div className="stats-row">
-          <span>{skills.length} Skills</span>
-          <span>{filteredSkills.length} Matched</span>
-          <span>{totalCategories} Categories</span>
+          <span>技能总数：{skills.length}</span>
+          <span>当前匹配：{filteredSkills.length}</span>
+          <span>分类数量：{totalCategories}</span>
         </div>
       </section>
 
       <section className="skills-panel rise-in">
-        <div className="panel-head">
-          <h2>Skills Directory</h2>
-          <span>{filteredSkills.length} items</span>
-        </div>
-
         {filteredSkills.length === 0 ? (
           <div className="empty-box">
             <h4>没有匹配结果</h4>
@@ -202,8 +203,8 @@ function App() {
                 style={{ animationDelay: `${groupIndex * 0.04 + 0.02}s` }}
               >
                 <div className="skills-group-head">
-                  <h3>{CATEGORY_LABELS[group.category] || group.category}</h3>
-                  <span>{group.items.length} items</span>
+                  <h3>{CATEGORY_GROUP_TITLES[group.category] || group.category}</h3>
+                  <span>{group.items.length} 项</span>
                 </div>
                 <div className="skills-grid">
                   {group.items.map((skill, index) =>
@@ -349,15 +350,14 @@ function App() {
 
   return (
     <div className="mcp-layout">
-      <div className="top-strip">Skills Registry · MCP-style Directory</div>
-
+      <div className="top-strip">Skills 市场</div>
       <div className="page-shell">
         <aside className="sidebar">
           <div className="sidebar-brand">
             <span className="brand-box">S</span>
             <div>
               <strong>Skills 市场</strong>
-              <p>Registry Portal</p>
+              <p>技能目录</p>
             </div>
           </div>
 
@@ -374,17 +374,12 @@ function App() {
           </nav>
 
           <div className="sidebar-foot">
-            <span>Total: {skills.length}</span>
-            <span>Categories: {totalCategories}</span>
+            <span>总数：{skills.length}</span>
+            <span>分类：{totalCategories}</span>
           </div>
         </aside>
 
         <main className="content">
-          <header className="content-topbar">
-            <button type="button">+ Submit</button>
-            <span>English</span>
-          </header>
-
           {activeMenu === 'home' ? browseView : null}
           {activeMenu === 'usage' ? usageView : null}
           {activeMenu === 'contrib' ? contribView : null}
