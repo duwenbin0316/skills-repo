@@ -504,6 +504,32 @@ body {
   color: #26364f;
 }
 
+.zh-brief-list {
+  margin-top: 12px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 10px;
+}
+
+.zh-brief-item {
+  border: 1px solid #e3e7ef;
+  border-radius: 10px;
+  background: #fbfcff;
+  padding: 10px 12px;
+}
+
+.zh-brief-item h3 {
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.35;
+}
+
+.zh-brief-item p {
+  margin-top: 8px;
+  font-size: 13px;
+  line-height: 1.6;
+}
+
 .rise-in {
   animation: rise-in 0.36s ease both;
 }
