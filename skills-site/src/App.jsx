@@ -1,16 +1,50 @@
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import skills from './data/skills.json';
 
 const MENU_ITEMS = [
-  { key: 'browse', label: '浏览所有 Skills' },
-  { key: 'usage', label: 'Skills 使用文档' },
-  { key: 'contrib', label: 'Skills 贡献文档' },
+  { key: 'home', label: '首页', hash: '#/' },
+  { key: 'usage', label: 'Skills 使用文档', hash: '#/usage' },
+  { key: 'contrib', label: 'Skills 贡献文档', hash: '#/contrib' },
 ];
 
+function getMenuFromHash(hash) {
+  const normalized = (hash || '').trim();
+  if (normalized === '' || normalized === '#' || normalized === '#/') {
+    return 'home';
+  }
+  if (normalized.startsWith('#/usage')) {
+    return 'usage';
+  }
+  if (normalized.startsWith('#/contrib')) {
+    return 'contrib';
+  }
+  return 'home';
+}
+
 function App() {
-  const [activeMenu, setActiveMenu] = useState('browse');
+  const [activeMenu, setActiveMenu] = useState(() => {
+    if (typeof window === 'undefined') return 'home';
+    return getMenuFromHash(window.location.hash);
+  });
   const [query, setQuery] = useState('');
   const [activeCategory, setActiveCategory] = useState('all');
+
+  useEffect(() => {
+    if (typeof window === 'undefined') return undefined;
+
+    const syncFromHash = () => {
+      setActiveMenu(getMenuFromHash(window.location.hash));
+    };
+
+    if (!window.location.hash || window.location.hash === '#') {
+      window.location.hash = '#/';
+    }
+
+    syncFromHash();
+    window.addEventListener('hashchange', syncFromHash);
+
+    return () => window.removeEventListener('hashchange', syncFromHash);
+  }, []);
 
   const categories = useMemo(() => {
     const names = Array.from(new Set(skills.map((s) => s.category))).sort();
@@ -250,21 +284,20 @@ function App() {
           <div className="sidebar-brand">
             <span className="brand-box">S</span>
             <div>
-              <strong>Skills.so</strong>
+              <strong>Skills 市场</strong>
               <p>Registry Portal</p>
             </div>
           </div>
 
           <nav className="menu-list">
             {MENU_ITEMS.map((item) => (
-              <button
+              <a
                 key={item.key}
-                type="button"
                 className={`menu-item ${activeMenu === item.key ? 'active' : ''}`}
-                onClick={() => setActiveMenu(item.key)}
+                href={item.hash}
               >
                 {item.label}
-              </button>
+              </a>
             ))}
           </nav>
 
@@ -280,7 +313,7 @@ function App() {
             <span>English</span>
           </header>
 
-          {activeMenu === 'browse' ? browseView : null}
+          {activeMenu === 'home' ? browseView : null}
           {activeMenu === 'usage' ? usageView : null}
           {activeMenu === 'contrib' ? contribView : null}
         </main>
