@@ -9,8 +9,8 @@ const CATEGORY_LABELS = {
 };
 
 const CATEGORY_GROUP_TITLES = {
-  opensource: '开源技能',
-  internal: '内部技能',
+  opensource: '开源 Skill',
+  internal: '内部 Skill',
 };
 
 const MENU_ITEMS = [
