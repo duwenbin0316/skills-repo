@@ -1,5 +1,5 @@
 ---
-name: oss-docs-writer
+name: docs-writer
 description: Write and improve technical documentation that is accurate, structured, and implementation-friendly. Use when producing README files, architecture docs, onboarding guides, API usage guides, changelogs, migration notes, or internal knowledge base content from code or requirements.
 ---
 

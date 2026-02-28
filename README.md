@@ -13,13 +13,13 @@ npx openskills install git@github.com:<your-org-or-user>/skills.git
 ```text
 skills/
 ├── opensource/                  # Open-source general skills
-│   ├── oss-code-review/
+│   ├── code-review/
 │   │   ├── SKILL.md
 │   │   ├── agents/openai.yaml
 │   │   └── references/review-checklist.md
-│   ├── oss-docs-writer/
-│   ├── oss-frontend-design/
-│   └── oss-skill-creator/
+│   ├── docs-writer/
+│   ├── frontend-design/
+│   └── skill-creator/
 ├── platform/                    # Frontend/Backend platform teams
 │   └── <team>/<skill-name>/
 └── business/                    # Business domain teams
@@ -32,10 +32,8 @@ OpenSkills discovers every directory that contains a `SKILL.md`, so adding a new
 
 - Keep first-level category fixed as `opensource`, `platform`, `business`.
 - Ensure each skill directory name is globally unique in the repo.
-- Use prefixes to avoid name collisions in client install dirs:
-  - `oss-...` for open-source skills
-  - `plat-...` for platform team skills
-  - `biz-...` for business team skills
+- Keep open-source skill names the same as upstream whenever possible.
+- For internal teams, use readable prefixes if needed to avoid collisions (for example `plat-...`, `biz-...`).
 - Keep `SKILL.md` frontmatter `name` equal to the skill directory basename.
 
 ## Add a New Skill

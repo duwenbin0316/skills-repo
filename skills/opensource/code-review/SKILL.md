@@ -1,5 +1,5 @@
 ---
-name: oss-code-review
+name: code-review
 description: Perform rigorous code review focused on bugs, regressions, security, performance, and maintainability risks. Use when reviewing pull requests, auditing refactors, checking production-readiness, or providing review feedback with prioritized findings and concrete fixes.
 ---
 
