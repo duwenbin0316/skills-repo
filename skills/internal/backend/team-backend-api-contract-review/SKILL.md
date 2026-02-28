@@ -1,9 +1,9 @@
 ---
-name: cmbc-tesla-api-contract-review
+name: team-backend-api-contract-review
 description: 审查后端 API 契约与变更风险，覆盖接口字段、状态码、兼容性和错误语义。用户提到接口评审、契约变更、OpenAPI 校验、前后端联调风险时必须使用此 skill。
 ---
 
-# Tesla API Contract Review
+# Backend API Contract Review
 
 用于后端接口契约的结构化评审。
 

@@ -1,9 +1,9 @@
 ---
-name: cmbc-apollo-ui-spec-to-react
-description: 将页面需求说明或视觉稿信息转成可落地的 React 页面与组件拆分方案。用户提到页面搭建、组件设计、前端落地、从设计到代码、Apollo 前端实现时都应优先使用此 skill。
+name: team-frontend-ui-spec-to-react
+description: 将页面需求说明或视觉稿信息转成可落地的 React 页面与组件拆分方案。用户提到页面搭建、组件设计、前端落地、从设计到代码、前端实现时都应优先使用此 skill。
 ---
 
-# Apollo UI Spec to React
+# Frontend UI Spec to React
 
 用于把业务需求快速转换为可实施的前端页面结构。
 

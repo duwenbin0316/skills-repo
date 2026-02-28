@@ -19,10 +19,10 @@ skills/
 │   ├── skill-creator/
 │   └── ... (synced from anthropics/skills)
 └── internal/                    # Internal company skills
-    ├── apollo/                  # Frontend team
-    │   └── cmbc-apollo-<skill-name>/
-    └── tesla/                   # Backend team
-        └── cmbc-tesla-<skill-name>/
+    ├── frontend/                # Frontend team
+    │   └── team-frontend-<skill-name>/
+    └── backend/                 # Backend team
+        └── team-backend-<skill-name>/
 ```
 
 OpenSkills discovers every directory that contains a `SKILL.md`, so adding a new folder with `SKILL.md` makes it installable.
@@ -34,9 +34,9 @@ OpenSkills discovers every directory that contains a `SKILL.md`, so adding a new
 - Keep first-level category fixed as `opensource`, `internal`.
 - Ensure each skill directory name is globally unique in the repo.
 - Keep open-source skill names the same as upstream whenever possible.
-- Internal skills must use `cmbc-<team>-<skill-name>`:
-  - Frontend team: `cmbc-apollo-...`
-  - Backend team: `cmbc-tesla-...`
+- Internal skills must use `team-<domain>-<skill-name>`:
+  - Frontend team: `team-frontend-...`
+  - Backend team: `team-backend-...`
 - Keep `SKILL.md` frontmatter `name` equal to the skill directory basename.
 
 ## Add a New Skill
@@ -44,7 +44,7 @@ OpenSkills discovers every directory that contains a `SKILL.md`, so adding a new
 Use the Codex skill-creator initializer:
 
 ```bash
-python3 ~/.codex/skills/.system/skill-creator/scripts/init_skill.py cmbc-apollo-<skill-name> --path skills/internal/apollo
+python3 ~/.codex/skills/.system/skill-creator/scripts/init_skill.py team-frontend-<skill-name> --path skills/internal/frontend
 ```
 
 Then update the generated `SKILL.md` description so OpenSkills can trigger it correctly.

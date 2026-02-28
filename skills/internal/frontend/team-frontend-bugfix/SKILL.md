@@ -1,9 +1,9 @@
 ---
-name: cmbc-apollo-frontend-bugfix
-description: 快速定位并修复 Apollo 前端问题，包括渲染异常、状态错乱、接口联调错误和样式回归。用户提到页面报错、白屏、交互失效、线上回归、前端排障时应立即使用此 skill。
+name: team-frontend-bugfix
+description: 快速定位并修复前端问题，包括渲染异常、状态错乱、接口联调错误和样式回归。用户提到页面报错、白屏、交互失效、线上回归、前端排障时应立即使用此 skill。
 ---
 
-# Apollo Frontend Bugfix
+# Frontend Bugfix
 
 聚焦前端问题排查与回归防护。
 

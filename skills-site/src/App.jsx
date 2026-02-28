@@ -231,13 +231,13 @@ function App() {
         <h2>1. 目录归属</h2>
         <ul>
           <li>开源技能放在 <code>skills/opensource</code></li>
-          <li>内部技能放在 <code>skills/internal/apollo</code> 或 <code>skills/internal/tesla</code></li>
+          <li>内部技能放在 <code>skills/internal/frontend</code> 或 <code>skills/internal/backend</code></li>
         </ul>
 
         <h2>2. 命名规则</h2>
         <ul>
-          <li>Apollo 团队：<code>cmbc-apollo-&lt;skill-name&gt;</code></li>
-          <li>Tesla 团队：<code>cmbc-tesla-&lt;skill-name&gt;</code></li>
+          <li>前端团队：<code>team-frontend-&lt;skill-name&gt;</code></li>
+          <li>后端团队：<code>team-backend-&lt;skill-name&gt;</code></li>
           <li>目录名必须与 <code>SKILL.md</code> frontmatter 里的 <code>name</code> 完全一致</li>
         </ul>
 

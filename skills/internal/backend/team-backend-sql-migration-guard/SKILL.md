@@ -1,9 +1,9 @@
 ---
-name: cmbc-tesla-sql-migration-guard
+name: team-backend-sql-migration-guard
 description: 设计和审查数据库迁移方案，重点防范锁表、数据丢失和回滚失败风险。用户提到 SQL 变更、表结构迁移、索引调整、上线回滚预案时应优先调用此 skill。
 ---
 
-# Tesla SQL Migration Guard
+# Backend SQL Migration Guard
 
 用于数据库变更的上线前风控与执行指引。
 
