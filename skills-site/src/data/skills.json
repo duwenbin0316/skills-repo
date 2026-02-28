@@ -24,6 +24,38 @@
     "team": null
   },
   {
+    "id": "skills/internal/apollo/cmbc-apollo-frontend-bugfix",
+    "name": "cmbc-apollo-frontend-bugfix",
+    "description": "快速定位并修复 Apollo 前端问题，包括渲染异常、状态错乱、接口联调错误和样式回归。用户提到页面报错、白屏、交互失效、线上回归、前端排障时应立即使用此 skill。",
+    "path": "skills/internal/apollo/cmbc-apollo-frontend-bugfix",
+    "category": "internal",
+    "team": "apollo"
+  },
+  {
+    "id": "skills/internal/apollo/cmbc-apollo-ui-spec-to-react",
+    "name": "cmbc-apollo-ui-spec-to-react",
+    "description": "将页面需求说明或视觉稿信息转成可落地的 React 页面与组件拆分方案。用户提到页面搭建、组件设计、前端落地、从设计到代码、Apollo 前端实现时都应优先使用此 skill。",
+    "path": "skills/internal/apollo/cmbc-apollo-ui-spec-to-react",
+    "category": "internal",
+    "team": "apollo"
+  },
+  {
+    "id": "skills/internal/tesla/cmbc-tesla-api-contract-review",
+    "name": "cmbc-tesla-api-contract-review",
+    "description": "审查后端 API 契约与变更风险，覆盖接口字段、状态码、兼容性和错误语义。用户提到接口评审、契约变更、OpenAPI 校验、前后端联调风险时必须使用此 skill。",
+    "path": "skills/internal/tesla/cmbc-tesla-api-contract-review",
+    "category": "internal",
+    "team": "tesla"
+  },
+  {
+    "id": "skills/internal/tesla/cmbc-tesla-sql-migration-guard",
+    "name": "cmbc-tesla-sql-migration-guard",
+    "description": "设计和审查数据库迁移方案，重点防范锁表、数据丢失和回滚失败风险。用户提到 SQL 变更、表结构迁移、索引调整、上线回滚预案时应优先调用此 skill。",
+    "path": "skills/internal/tesla/cmbc-tesla-sql-migration-guard",
+    "category": "internal",
+    "team": "tesla"
+  },
+  {
     "id": "skills/opensource/doc-coauthoring",
     "name": "doc-coauthoring",
     "description": "Guide users through a structured workflow for co-authoring documentation. Use when user wants to write documentation, proposals, technical specs, decision docs, or similar structured content. This workflow helps users efficiently transfer context, refine content through iteration, and verify the doc works for readers. Trigger when user mentions writing docs, creating proposals, drafting specs, or similar documentation tasks.",
