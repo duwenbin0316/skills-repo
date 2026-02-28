@@ -57,3 +57,20 @@ After install, users can sync to their `AGENTS.md`:
 ```bash
 npx openskills sync
 ```
+
+## Skills Static Page
+
+A React static page is available in `skills-site/` to show and search repository skills.
+
+```bash
+cd skills-site
+npm install
+npm run skills:sync
+npm run dev
+```
+
+Build static files:
+
+```bash
+npm run build
+```
