@@ -36,77 +36,38 @@ function App() {
     });
   }, [query, activeCategory]);
 
-  const internalCount = useMemo(
-    () => skills.filter((skill) => skill.category === 'internal').length,
-    []
-  );
+  const internalCount = useMemo(() => {
+    return skills.filter((skill) => skill.category === 'internal').length;
+  }, []);
+
+  const openSourceCount = useMemo(() => {
+    return skills.filter((skill) => skill.category === 'opensource').length;
+  }, []);
 
   return (
-    <div className="portal">
-      <header className="topbar rise-in">
-        <div className="brand">
+    <div className="market">
+      <header className="market-header rise-in">
+        <div className="market-brand">
           <span className="brand-dot" />
-          Skills Hub
+          Skills.so
         </div>
-        <nav className="top-nav">
-          <a href="#overview">总览</a>
-          <a href="#registry">Skills 列表</a>
+        <nav className="market-nav">
+          <a href="#home">Home</a>
+          <a href="#skills">Skills</a>
+          <a href="#faq">FAQ</a>
         </nav>
-        <button type="button" className="top-cta">立即体验</button>
+        <button type="button" className="market-cta">Sync</button>
       </header>
 
-      <main className="main">
-        <section id="overview" className="hero rise-in">
-          <div className="hero-copy">
-            <p className="hero-tag">AI SKILLS PORTAL</p>
-            <h1>AI Skills 管理中心</h1>
-            <p className="hero-subtitle">
-              统一展示并检索可用 skills，支持智能化沉淀、复用与协作。
-            </p>
-            <div className="hero-stats">
-              <div className="stat">
-                <strong>{skills.length}</strong>
-                <span>总 Skills</span>
-              </div>
-              <div className="stat">
-                <strong>{categories.length - 1}</strong>
-                <span>分类数</span>
-              </div>
-              <div className="stat">
-                <strong>{internalCount}</strong>
-                <span>内部 Skills</span>
-              </div>
-            </div>
-          </div>
-          <svg className="network-bg" viewBox="0 0 1200 460" aria-hidden="true">
-            <path d="M30 340 C190 240, 280 360, 440 275 S740 210, 1160 300" />
-            <path d="M20 365 C210 270, 350 390, 520 290 S820 220, 1180 332" />
-            <path d="M90 325 C300 250, 470 360, 625 285 S900 225, 1130 280" />
-            <line x1="160" y1="315" x2="260" y2="235" />
-            <line x1="260" y1="235" x2="410" y2="270" />
-            <line x1="410" y1="270" x2="515" y2="205" />
-            <line x1="515" y1="205" x2="650" y2="252" />
-            <line x1="650" y1="252" x2="780" y2="192" />
-            <line x1="780" y1="192" x2="915" y2="245" />
-            <line x1="915" y1="245" x2="1040" y2="198" />
-            <circle cx="160" cy="315" r="9" />
-            <circle cx="260" cy="235" r="11" />
-            <circle cx="410" cy="270" r="8" />
-            <circle cx="515" cy="205" r="12" />
-            <circle cx="650" cy="252" r="9" />
-            <circle cx="780" cy="192" r="10" />
-            <circle cx="915" cy="245" r="12" />
-            <circle cx="1040" cy="198" r="10" />
-          </svg>
-        </section>
+      <main className="market-main">
+        <section id="home" className="hero rise-in">
+          <p className="hero-pill">Skills Marketplace</p>
+          <h1>Find Awesome Skills for Your Agent Stack</h1>
+          <p className="hero-subtitle">
+            统一管理开源与内部 skills，支持搜索、筛选与快速浏览。
+          </p>
 
-        <section id="registry" className="registry-panel rise-in">
-          <div className="panel-head">
-            <h3>可用 Skills</h3>
-            <span className="count-pill">{filteredSkills.length} / {skills.length}</span>
-          </div>
-
-          <div className="search-wrap">
+          <div className="search-row">
             <input
               className="search-input"
               type="text"
@@ -114,8 +75,30 @@ function App() {
               onChange={(event) => setQuery(event.target.value)}
               placeholder="搜索 skill 名称、描述、路径、团队"
             />
+            <span className="count-pill">{filteredSkills.length} / {skills.length}</span>
           </div>
 
+          <div className="stats-row">
+            <div className="stat-card">
+              <strong>{skills.length}</strong>
+              <span>Total Skills</span>
+            </div>
+            <div className="stat-card">
+              <strong>{openSourceCount}</strong>
+              <span>Open Source</span>
+            </div>
+            <div className="stat-card">
+              <strong>{internalCount}</strong>
+              <span>Internal</span>
+            </div>
+            <div className="stat-card">
+              <strong>{categories.length - 1}</strong>
+              <span>Categories</span>
+            </div>
+          </div>
+        </section>
+
+        <section id="skills" className="tabs-wrap rise-in">
           <div className="chips">
             {categories.map((category) => (
               <button
@@ -128,61 +111,55 @@ function App() {
               </button>
             ))}
           </div>
+        </section>
 
-          <div className="skills-grid">
-            {filteredSkills.map((skill, index) => (
-              <article
-                className="skill-card rise-in"
-                key={skill.id}
-                style={{ animationDelay: `${index * 0.03 + 0.1}s` }}
-              >
-                <div className="card-head">
-                  <h4>{skill.name}</h4>
-                  <span className="badge">{skill.category}</span>
+        <section className="skills-grid">
+          {filteredSkills.map((skill, index) => (
+            <article
+              className="skill-card rise-in"
+              key={skill.id}
+              style={{ animationDelay: `${index * 0.025 + 0.06}s` }}
+            >
+              <div className="skill-head">
+                <span className="skill-avatar">{skill.name.slice(0, 1).toUpperCase()}</span>
+                <div className="skill-title-wrap">
+                  <h3>{skill.name}</h3>
+                  <span className="skill-path">{skill.path}</span>
                 </div>
-                <p>{skill.description || 'No description'}</p>
-                <div className="meta-row">
-                  {skill.team ? <span className="meta">team: {skill.team}</span> : null}
-                  <span className="meta path">{skill.path}</span>
-                </div>
-              </article>
-            ))}
-
-            {filteredSkills.length === 0 ? (
-              <div className="empty rise-in">
-                <h4>没有匹配结果</h4>
-                <p>换个关键词试试，或清空分类筛选。</p>
+                <span className="badge">{skill.category}</span>
               </div>
-            ) : null}
+
+              <p>{skill.description || 'No description'}</p>
+
+              <div className="meta-row">
+                {skill.team ? <span className="meta">team: {skill.team}</span> : null}
+              </div>
+            </article>
+          ))}
+
+          {filteredSkills.length === 0 ? (
+            <div className="empty rise-in">
+              <h4>没有匹配结果</h4>
+              <p>换个关键词试试，或清空分类筛选。</p>
+            </div>
+          ) : null}
+        </section>
+
+        <section id="faq" className="faq rise-in">
+          <h2>FAQ</h2>
+          <div className="faq-item">
+            <h4>这些 skills 来自哪里？</h4>
+            <p>来源于 `skills/opensource` 和 `skills/internal`，页面会自动扫描 `SKILL.md` 生成列表。</p>
+          </div>
+          <div className="faq-item">
+            <h4>如何新增 skill？</h4>
+            <p>在对应目录创建新 skill 并补充 `SKILL.md`，运行 `npm run skills:sync` 即可刷新。</p>
           </div>
         </section>
       </main>
 
-      <footer className="footer">
-        <div>
-          <h5>系统模块</h5>
-          <p>Skills Registry</p>
-          <p>Skills Site</p>
-          <p>OpenSkills</p>
-        </div>
-        <div>
-          <h5>内部团队</h5>
-          <p>Apollo</p>
-          <p>Tesla</p>
-          <p>Platform</p>
-        </div>
-        <div>
-          <h5>开源来源</h5>
-          <p>anthropics/skills</p>
-          <p>skill-creator</p>
-          <p>docx / pdf / xlsx</p>
-        </div>
-        <div>
-          <h5>关于</h5>
-          <p>AI 提示词管理</p>
-          <p>静态化展示</p>
-          <p>可搜索可扩展</p>
-        </div>
+      <footer className="market-footer">
+        <p>Built for Skills Registry · opensource + internal</p>
       </footer>
     </div>
   );
