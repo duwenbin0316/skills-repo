@@ -7,48 +7,6 @@ const MENU_ITEMS = [
   { key: 'contrib', label: 'Skills 贡献文档' },
 ];
 
-const USAGE_DOCS = [
-  {
-    title: '安装仓库 Skills',
-    content: '从私有仓库安装并在项目中使用 skills。',
-    code: 'npx openskills install git@github.com:duwenbin0316/skills-repo.git',
-  },
-  {
-    title: '读取 Skill 指令',
-    content: '查看指定 skill 的内容，便于排查触发逻辑。',
-    code: 'npx openskills read <skill-name>',
-  },
-  {
-    title: '同步到 AGENTS.md',
-    content: '把当前可用 skills 汇总写入 AGENTS.md。',
-    code: 'npx openskills sync',
-  },
-  {
-    title: '刷新站点索引',
-    content: '重新扫描 skills 目录并更新站点数据。',
-    code: 'cd skills-site && npm run skills:sync',
-  },
-];
-
-const CONTRIBUTION_DOCS = [
-  {
-    title: '目录选择',
-    content: '开源 skill 放到 skills/opensource；内部 skill 放到 skills/internal/<team>。',
-  },
-  {
-    title: '命名规范',
-    content: '内部 skill 使用前缀：cmbc-apollo-* 或 cmbc-tesla-*；目录名与 SKILL.md 中 name 必须一致。',
-  },
-  {
-    title: '最小结构',
-    content: '每个 skill 至少包含 SKILL.md；可按需增加 scripts/ references/ assets/。',
-  },
-  {
-    title: '提交前检查',
-    content: '执行 npm run skills:sync，确认站点能搜索到新增 skill，再提交并推送。',
-  },
-];
-
 function App() {
   const [activeMenu, setActiveMenu] = useState('browse');
   const [query, setQuery] = useState('');
@@ -165,35 +123,112 @@ function App() {
   );
 
   const usageView = (
-    <section className="doc-panel rise-in">
-      <h2>Skills 使用文档</h2>
-      <p className="doc-intro">以下是常用操作命令，覆盖安装、读取、同步和站点刷新。</p>
+    <section className="markdown-page rise-in">
+      <article className="markdown-doc">
+        <h1>Skills 使用文档（基于 OpenSkills）</h1>
+        <p>
+          本文档说明如何在项目中安装、读取、同步和更新 skills。默认推荐项目级安装，避免污染全局环境。
+        </p>
 
-      <div className="doc-grid">
-        {USAGE_DOCS.map((item) => (
-          <article key={item.title} className="doc-card">
-            <h3>{item.title}</h3>
-            <p>{item.content}</p>
-            <pre>{item.code}</pre>
-          </article>
-        ))}
-      </div>
+        <h2>1. 安装 Skills</h2>
+        <p>从你的私有 skills 仓库安装（默认安装到当前项目的 <code>.agent/skills</code>）。</p>
+        <pre>
+          <code>npx openskills install git@github.com:duwenbin0316/skills-repo.git</code>
+        </pre>
+        <p>如果要安装到全局目录（<code>~/.agent/skills</code>），使用：</p>
+        <pre>
+          <code>npx openskills install git@github.com:duwenbin0316/skills-repo.git --global</code>
+        </pre>
+
+        <h2>2. 查看已安装 Skills</h2>
+        <p>列出当前可用 skills：</p>
+        <pre>
+          <code>npx openskills list</code>
+        </pre>
+        <p>读取某个 skill 的指令内容：</p>
+        <pre>
+          <code>npx openskills read &lt;skill-name&gt;</code>
+        </pre>
+
+        <h2>3. 同步到 AGENTS.md</h2>
+        <p>把已安装 skills 写入 AGENTS.md，供 Agent 自动发现：</p>
+        <pre>
+          <code>npx openskills sync</code>
+        </pre>
+        <p>非交互全量同步：</p>
+        <pre>
+          <code>npx openskills sync --yes</code>
+        </pre>
+
+        <h2>4. 更新与移除</h2>
+        <p>更新所有已安装 skills：</p>
+        <pre>
+          <code>npx openskills update</code>
+        </pre>
+        <p>移除指定 skill：</p>
+        <pre>
+          <code>npx openskills remove &lt;skill-name&gt;</code>
+        </pre>
+
+        <h2>5. 站点数据刷新</h2>
+        <p>当新增或调整 skills 后，刷新站点索引：</p>
+        <pre>
+          <code>{`cd skills-site\nnpm run skills:sync`}</code>
+        </pre>
+      </article>
     </section>
   );
 
   const contribView = (
-    <section className="doc-panel rise-in">
-      <h2>Skills 贡献文档</h2>
-      <p className="doc-intro">贡献前先确认目录归属、命名规范和最小结构，确保后续维护一致。</p>
+    <section className="markdown-page rise-in">
+      <article className="markdown-doc">
+        <h1>Skills 贡献文档</h1>
+        <p>本规范用于保证仓库内 skills 结构统一、命名一致、可持续维护。</p>
 
-      <div className="doc-grid">
-        {CONTRIBUTION_DOCS.map((item) => (
-          <article key={item.title} className="doc-card">
-            <h3>{item.title}</h3>
-            <p>{item.content}</p>
-          </article>
-        ))}
-      </div>
+        <h2>1. 目录归属</h2>
+        <ul>
+          <li>开源技能放在 <code>skills/opensource</code></li>
+          <li>内部技能放在 <code>skills/internal/apollo</code> 或 <code>skills/internal/tesla</code></li>
+        </ul>
+
+        <h2>2. 命名规则</h2>
+        <ul>
+          <li>Apollo 团队：<code>cmbc-apollo-&lt;skill-name&gt;</code></li>
+          <li>Tesla 团队：<code>cmbc-tesla-&lt;skill-name&gt;</code></li>
+          <li>目录名必须与 <code>SKILL.md</code> frontmatter 里的 <code>name</code> 完全一致</li>
+        </ul>
+
+        <h2>3. 最小文件结构</h2>
+        <pre>
+          <code>{`<skill-name>/\n└── SKILL.md`}</code>
+        </pre>
+        <p>按需增加：</p>
+        <ul>
+          <li><code>scripts/</code>：可执行脚本</li>
+          <li><code>references/</code>：参考文档</li>
+          <li><code>assets/</code>：模板或资源文件</li>
+        </ul>
+
+        <h2>4. SKILL.md 编写要求</h2>
+        <ul>
+          <li>必须包含 YAML frontmatter：<code>name</code>、<code>description</code></li>
+          <li><code>description</code> 需要清楚写明“做什么”和“何时触发”</li>
+          <li>正文建议按 Workflow 输出，优先写可执行步骤</li>
+        </ul>
+
+        <h2>5. 提交流程</h2>
+        <ol>
+          <li>创建/修改 skill 文件</li>
+          <li>刷新站点索引：<code>npm run skills:sync</code></li>
+          <li>本地检查页面显示与搜索结果</li>
+          <li>提交并推送代码</li>
+        </ol>
+
+        <h2>6. 推荐检查命令</h2>
+        <pre>
+          <code>{`npx openskills list\nnpx openskills read <skill-name>\ncd skills-site && npm run build`}</code>
+        </pre>
+      </article>
     </section>
   );
 
