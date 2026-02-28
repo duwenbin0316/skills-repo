@@ -16,6 +16,14 @@
     "team": null
   },
   {
+    "id": "skills/opensource/cache-components",
+    "name": "cache-components",
+    "description": "|",
+    "path": "skills/opensource/cache-components",
+    "category": "opensource",
+    "team": null
+  },
+  {
     "id": "skills/opensource/canvas-design",
     "name": "canvas-design",
     "description": "Create beautiful visual art in .png and .pdf documents using design philosophy. You should use this skill when the user asks to create a poster, piece of art, design, or other static piece. Create original visual designs, never copying existing artists' work to avoid copyright violations.",
@@ -56,6 +64,14 @@
     "team": "tesla"
   },
   {
+    "id": "skills/opensource/code-reviewer",
+    "name": "code-reviewer",
+    "description": "Use this skill to review code. It supports both local changes (staged or working tree)",
+    "path": "skills/opensource/code-reviewer",
+    "category": "opensource",
+    "team": null
+  },
+  {
     "id": "skills/opensource/doc-coauthoring",
     "name": "doc-coauthoring",
     "description": "Guide users through a structured workflow for co-authoring documentation. Use when user wants to write documentation, proposals, technical specs, decision docs, or similar structured content. This workflow helps users efficiently transfer context, refine content through iteration, and verify the doc works for readers. Trigger when user mentions writing docs, creating proposals, drafting specs, or similar documentation tasks.",
@@ -72,10 +88,42 @@
     "team": null
   },
   {
+    "id": "skills/opensource/find-skills",
+    "name": "find-skills",
+    "description": "Helps users discover and install agent skills when they ask questions like \"how do I do X\", \"find a skill for X\", \"is there a skill that can...\", or express interest in extending capabilities. This skill should be used when the user is looking for functionality that might exist as an installable skill.",
+    "path": "skills/opensource/find-skills",
+    "category": "opensource",
+    "team": null
+  },
+  {
+    "id": "skills/opensource/fix",
+    "name": "fix",
+    "description": "Use when you have lint errors, formatting issues, or before committing code to ensure it passes CI.",
+    "path": "skills/opensource/fix",
+    "category": "opensource",
+    "team": null
+  },
+  {
+    "id": "skills/opensource/frontend-code-review",
+    "name": "frontend-code-review",
+    "description": "\"Trigger when the user requests a review of frontend files (e.g., `.tsx`, `.ts`, `.js`). Support both pending-change reviews and focused file reviews while applying the checklist rules.\"",
+    "path": "skills/opensource/frontend-code-review",
+    "category": "opensource",
+    "team": null
+  },
+  {
     "id": "skills/opensource/frontend-design",
     "name": "frontend-design",
     "description": "Create distinctive, production-grade frontend interfaces with high design quality. Use this skill when the user asks to build web components, pages, artifacts, posters, or applications (examples include websites, landing pages, dashboards, React components, HTML/CSS layouts, or when styling/beautifying any web UI). Generates creative, polished code and UI design that avoids generic AI aesthetics.",
     "path": "skills/opensource/frontend-design",
+    "category": "opensource",
+    "team": null
+  },
+  {
+    "id": "skills/opensource/fullstack-developer",
+    "name": "fullstack-developer",
+    "description": "|",
+    "path": "skills/opensource/fullstack-developer",
     "category": "opensource",
     "team": null
   },
@@ -112,6 +160,14 @@
     "team": null
   },
   {
+    "id": "skills/opensource/pr-creator",
+    "name": "pr-creator",
+    "description": "Use this skill when asked to create a pull request (PR). It ensures all PRs",
+    "path": "skills/opensource/pr-creator",
+    "category": "opensource",
+    "team": null
+  },
+  {
     "id": "skills/opensource/skill-creator",
     "name": "skill-creator",
     "description": "Create new skills, modify and improve existing skills, and measure skill performance. Use when users want to create a skill from scratch, update or optimize an existing skill, run evals to test a skill, benchmark skill performance with variance analysis, or optimize a skill's description for better triggering accuracy.",
@@ -132,6 +188,14 @@
     "name": "theme-factory",
     "description": "Toolkit for styling artifacts with a theme. These artifacts can be slides, docs, reportings, HTML landing pages, etc. There are 10 pre-set themes with colors/fonts that you can apply to any artifact that has been creating, or can generate a new theme on-the-fly.",
     "path": "skills/opensource/theme-factory",
+    "category": "opensource",
+    "team": null
+  },
+  {
+    "id": "skills/opensource/update-docs",
+    "name": "update-docs",
+    "description": "This skill should be used when the user asks to \"update documentation for my changes\", \"check docs for this PR\", \"what docs need updating\", \"sync docs with code\", \"scaffold docs for this feature\", \"document this feature\", \"review docs completeness\", \"add docs for this change\", \"what documentation is affected\", \"docs impact\", or mentions \"docs/\", \"docs/01-app\", \"docs/02-pages\", \"MDX\", \"documentation update\", \"API reference\", \".mdx files\". Provides guided workflow for updating Next.js documentation based on code changes.",
+    "path": "skills/opensource/update-docs",
     "category": "opensource",
     "team": null
   },
