@@ -2,6 +2,11 @@ import { useEffect, useMemo, useState } from 'react';
 import skills from './data/skills.json';
 import skillBriefZh from './data/skill-brief-zh.json';
 
+const CATEGORY_LABELS = {
+  opensource: 'OpenSource Skills',
+  internal: 'Internal Skills',
+};
+
 const MENU_ITEMS = [
   { key: 'home', label: '首页', hash: '#/' },
   { key: 'usage', label: 'Skills 使用文档', hash: '#/usage' },
@@ -86,6 +91,58 @@ function App() {
         .sort((a, b) => a.name.localeCompare(b.name, 'en')),
     []
   );
+  const groupedAllSkills = useMemo(() => {
+    if (activeCategory !== 'all') {
+      return [];
+    }
+
+    return ['opensource', 'internal']
+      .map((category) => ({
+        category,
+        items: filteredSkills.filter((skill) => skill.category === category),
+      }))
+      .filter((group) => group.items.length > 0);
+  }, [activeCategory, filteredSkills]);
+
+  const renderSkillCard = (skill, index, keyPrefix = activeCategory) => {
+    const fullDescription = skill.description || 'No description';
+    const briefZh =
+      skill.category === 'opensource' ? skillBriefZh[skill.name] || '' : '';
+
+    return (
+      <article
+        className="skill-card rise-in"
+        key={`${keyPrefix}-${skill.id}`}
+        style={{ animationDelay: `${index * 0.02 + 0.05}s` }}
+      >
+        <div className="skill-head">
+          <div className="skill-avatar">{skill.name.slice(0, 1).toUpperCase()}</div>
+          <div className="skill-title-wrap">
+            <h3 title={skill.name}>{skill.name}</h3>
+            <span title={skill.path}>{skill.path}</span>
+          </div>
+        </div>
+
+        <div className="badge-row">
+          <span className="category-pill">{skill.category}</span>
+          {skill.team ? <span className="meta">team: {skill.team}</span> : null}
+        </div>
+
+        <div className="desc-wrap">
+          <p>{fullDescription}</p>
+          <div className="desc-tooltip" role="tooltip">
+            {fullDescription}
+          </div>
+        </div>
+
+        {briefZh ? (
+          <p className="skill-brief-zh" title={briefZh}>
+            中文：{briefZh}
+          </p>
+        ) : null}
+      </article>
+    );
+  };
 
   const browseView = (
     <>
@@ -129,54 +186,40 @@ function App() {
           <span>{filteredSkills.length} items</span>
         </div>
 
-        <div className="skills-grid">
-          {filteredSkills.map((skill, index) => {
-            const fullDescription = skill.description || 'No description';
-            const briefZh =
-              skill.category === 'opensource' ? skillBriefZh[skill.name] || '' : '';
+        {filteredSkills.length === 0 ? (
+          <div className="empty-box">
+            <h4>没有匹配结果</h4>
+            <p>可以尝试更换关键字，或切换分类标签。</p>
+          </div>
+        ) : null}
 
-            return (
-              <article
-                className="skill-card rise-in"
-                key={`${activeCategory}-${skill.id}`}
-                style={{ animationDelay: `${index * 0.02 + 0.05}s` }}
+        {filteredSkills.length > 0 && activeCategory === 'all' ? (
+          <div className="skills-group-list">
+            {groupedAllSkills.map((group, groupIndex) => (
+              <section
+                className="skills-group rise-in"
+                key={`group-${group.category}`}
+                style={{ animationDelay: `${groupIndex * 0.04 + 0.02}s` }}
               >
-                <div className="skill-head">
-                  <div className="skill-avatar">{skill.name.slice(0, 1).toUpperCase()}</div>
-                  <div className="skill-title-wrap">
-                    <h3 title={skill.name}>{skill.name}</h3>
-                    <span title={skill.path}>{skill.path}</span>
-                  </div>
+                <div className="skills-group-head">
+                  <h3>{CATEGORY_LABELS[group.category] || group.category}</h3>
+                  <span>{group.items.length} items</span>
                 </div>
-
-                <div className="badge-row">
-                  <span className="category-pill">{skill.category}</span>
-                  {skill.team ? <span className="meta">team: {skill.team}</span> : null}
+                <div className="skills-grid">
+                  {group.items.map((skill, index) =>
+                    renderSkillCard(skill, index, `all-${group.category}`)
+                  )}
                 </div>
+              </section>
+            ))}
+          </div>
+        ) : null}
 
-                <div className="desc-wrap">
-                  <p>{fullDescription}</p>
-                  <div className="desc-tooltip" role="tooltip">
-                    {fullDescription}
-                  </div>
-                </div>
-
-                {briefZh ? (
-                  <p className="skill-brief-zh" title={briefZh}>
-                    中文：{briefZh}
-                  </p>
-                ) : null}
-              </article>
-            );
-          })}
-
-          {filteredSkills.length === 0 ? (
-            <div className="empty-box">
-              <h4>没有匹配结果</h4>
-              <p>可以尝试更换关键字，或切换分类标签。</p>
-            </div>
-          ) : null}
-        </div>
+        {filteredSkills.length > 0 && activeCategory !== 'all' ? (
+          <div className="skills-grid">
+            {filteredSkills.map((skill, index) => renderSkillCard(skill, index))}
+          </div>
+        ) : null}
       </section>
     </>
   );
