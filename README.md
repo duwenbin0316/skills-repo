@@ -33,7 +33,7 @@ OpenSkills discovers every directory that contains a `SKILL.md`, so adding a new
 Use the Codex skill-creator initializer:
 
 ```bash
-python3 ~/.codex/skills/.system/skill-creator/scripts/init_skill.py <skill-name> --path .
+python3 ~/.codex/skills/.system/skill-creator/scripts/init_skill.py <skill-name> --path skills
 ```
 
 Then update the generated `SKILL.md` description so OpenSkills can trigger it correctly.
