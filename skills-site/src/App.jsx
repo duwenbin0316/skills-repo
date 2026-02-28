@@ -1,33 +1,6 @@
 import { useMemo, useState } from 'react';
 import skills from './data/skills.json';
 
-const featureCards = [
-  {
-    key: 'import',
-    title: 'Skills 引入',
-    description: '支持从 opensource 与 internal 两类仓库统一纳管，降低接入成本。',
-    icon: 'IN',
-  },
-  {
-    key: 'manage',
-    title: 'Skills 管理',
-    description: '按分类和团队组织 skills，保持目录清晰并支持持续扩展。',
-    icon: 'MG',
-  },
-  {
-    key: 'search',
-    title: 'Skills 搜索',
-    description: '支持按名称、描述、路径和团队快速检索，定位更高效。',
-    icon: 'SR',
-  },
-  {
-    key: 'browse',
-    title: 'Skills 浏览',
-    description: '卡片化展示关键信息，便于快速理解 skill 用途与归属。',
-    icon: 'UI',
-  },
-];
-
 function App() {
   const [query, setQuery] = useState('');
   const [activeCategory, setActiveCategory] = useState('all');
@@ -77,7 +50,6 @@ function App() {
         </div>
         <nav className="top-nav">
           <a href="#overview">总览</a>
-          <a href="#features">功能</a>
           <a href="#registry">Skills 列表</a>
         </nav>
         <button type="button" className="top-cta">立即体验</button>
@@ -126,20 +98,6 @@ function App() {
             <circle cx="915" cy="245" r="12" />
             <circle cx="1040" cy="198" r="10" />
           </svg>
-        </section>
-
-        <section id="features" className="feature-grid">
-          {featureCards.map((item, index) => (
-            <article
-              key={item.key}
-              className="feature-card rise-in"
-              style={{ animationDelay: `${index * 0.05 + 0.08}s` }}
-            >
-              <div className="feature-icon">{item.icon}</div>
-              <h2>{item.title}</h2>
-              <p>{item.description}</p>
-            </article>
-          ))}
         </section>
 
         <section id="registry" className="registry-panel rise-in">
