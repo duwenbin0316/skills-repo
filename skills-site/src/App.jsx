@@ -94,13 +94,6 @@ function App() {
   }, [query, activeCategory]);
 
   const totalCategories = categories.length - 1;
-  const openSourceSkills = useMemo(
-    () =>
-      skills
-        .filter((skill) => skill.category === 'opensource')
-        .sort((a, b) => a.name.localeCompare(b.name, 'en')),
-    []
-  );
   const groupedAllSkills = useMemo(() => {
     if (activeCategory !== 'all') {
       return [];
@@ -319,18 +312,6 @@ function App() {
           <code>{`cd skills-site\nnpm run skills:sync`}</code>
         </pre>
 
-        <h2>6. 开源 Skills 中文速览</h2>
-        <p>以下为展示层的简短中文介绍（独立维护，不修改原始 Skill 内容）。</p>
-        <div className="zh-brief-list">
-          {openSourceSkills.map((skill) => (
-            <section key={`zh-${skill.id}`} className="zh-brief-item">
-              <h3>
-                <code>{skill.name}</code>
-              </h3>
-              <p>{skillBriefZh[skill.name] || '暂无中文简介，欢迎补充。'}</p>
-            </section>
-          ))}
-        </div>
       </article>
     </section>
   );
