@@ -88,28 +88,37 @@ function App() {
         </div>
 
         <div className="skills-grid">
-          {filteredSkills.map((skill, index) => (
-            <article
-              className="skill-card rise-in"
-              key={skill.id}
-              style={{ animationDelay: `${index * 0.02 + 0.05}s` }}
-            >
-              <div className="skill-head">
-                <div className="skill-avatar">{skill.name.slice(0, 1).toUpperCase()}</div>
-                <div className="skill-title-wrap">
-                  <h3>{skill.name}</h3>
-                  <span>{skill.path}</span>
+          {filteredSkills.map((skill, index) => {
+            const fullDescription = skill.description || 'No description';
+
+            return (
+              <article
+                className="skill-card rise-in"
+                key={skill.id}
+                style={{ animationDelay: `${index * 0.02 + 0.05}s` }}
+              >
+                <div className="skill-head">
+                  <div className="skill-avatar">{skill.name.slice(0, 1).toUpperCase()}</div>
+                  <div className="skill-title-wrap">
+                    <h3>{skill.name}</h3>
+                    <span>{skill.path}</span>
+                  </div>
+                  <span className="category-pill">{skill.category}</span>
                 </div>
-                <span className="category-pill">{skill.category}</span>
-              </div>
 
-              <p>{skill.description || 'No description'}</p>
+                <div className="desc-wrap">
+                  <p>{fullDescription}</p>
+                  <div className="desc-tooltip" role="tooltip">
+                    {fullDescription}
+                  </div>
+                </div>
 
-              <div className="meta-row">
-                {skill.team ? <span className="meta">team: {skill.team}</span> : null}
-              </div>
-            </article>
-          ))}
+                <div className="meta-row">
+                  {skill.team ? <span className="meta">team: {skill.team}</span> : null}
+                </div>
+              </article>
+            );
+          })}
 
           {filteredSkills.length === 0 ? (
             <div className="empty-box">

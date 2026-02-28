@@ -264,7 +264,7 @@ body {
   height: 200px;
   display: flex;
   flex-direction: column;
-  overflow: hidden;
+  overflow: visible;
 }
 
 .skill-head {
@@ -324,7 +324,11 @@ body {
   flex-shrink: 0;
 }
 
-.skill-card p {
+.desc-wrap {
+  position: relative;
+}
+
+.desc-wrap p {
   margin: 10px 0 10px;
   color: #5f6877;
   font-size: 13px;
@@ -334,6 +338,34 @@ body {
   display: -webkit-box;
   -webkit-line-clamp: 4;
   -webkit-box-orient: vertical;
+}
+
+.desc-tooltip {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: calc(100% + 6px);
+  z-index: 20;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(4px);
+  transition: opacity 0.15s ease, transform 0.15s ease;
+  border: 1px solid #d7dde8;
+  border-radius: 10px;
+  background: #ffffff;
+  color: #435067;
+  box-shadow: 0 8px 22px rgba(20, 27, 39, 0.12);
+  padding: 9px 10px;
+  font-size: 12px;
+  line-height: 1.5;
+  max-height: 170px;
+  overflow: auto;
+  white-space: pre-wrap;
+}
+
+.desc-wrap:hover .desc-tooltip {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .meta-row {
