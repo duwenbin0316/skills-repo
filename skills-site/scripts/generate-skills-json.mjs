@@ -15,13 +15,122 @@ function extractFrontmatter(content) {
   }
 
   const frontmatter = match[1];
-  const nameMatch = frontmatter.match(/^name:\s*(.+)$/m);
-  const descMatch = frontmatter.match(/^description:\s*(.+)$/m);
+  const name = extractScalar(frontmatter, 'name');
+  const description = extractDescription(frontmatter);
 
   return {
-    name: (nameMatch?.[1] || '').trim(),
-    description: (descMatch?.[1] || '').trim(),
+    name,
+    description,
   };
+}
+
+function extractScalar(frontmatter, key) {
+  const regex = new RegExp(`^${key}:\\s*(.+)$`, 'm');
+  const match = frontmatter.match(regex);
+  if (!match) {
+    return '';
+  }
+  const value = match[1].trim();
+  return unquote(value);
+}
+
+function extractDescription(frontmatter) {
+  const lines = frontmatter.split(/\r?\n/);
+  let descIndex = -1;
+  let indicator = '';
+
+  for (let index = 0; index < lines.length; index += 1) {
+    const match = lines[index].match(/^description:\s*(.*)$/);
+    if (match) {
+      descIndex = index;
+      indicator = match[1].trim();
+      break;
+    }
+  }
+
+  if (descIndex === -1) {
+    return '';
+  }
+
+  // Single-line scalar: description: text...
+  if (indicator && !/^[|>][-+]?$/.test(indicator)) {
+    return unquote(indicator);
+  }
+
+  const blockLines = [];
+  for (let index = descIndex + 1; index < lines.length; index += 1) {
+    const line = lines[index];
+    if (line.trim() === '') {
+      blockLines.push('');
+      continue;
+    }
+
+    // Stop at next top-level key (e.g. license:, metadata:)
+    if (/^[A-Za-z0-9_-]+:\s*/.test(line)) {
+      break;
+    }
+
+    // Keep only lines indented under description
+    if (/^\s+/.test(line)) {
+      blockLines.push(line);
+      continue;
+    }
+
+    break;
+  }
+
+  if (blockLines.length === 0) {
+    return '';
+  }
+
+  const nonEmptyLines = blockLines.filter((line) => line.trim() !== '');
+  const minIndent = Math.min(
+    ...nonEmptyLines.map((line) => (line.match(/^(\s*)/)?.[1].length ?? 0))
+  );
+  const normalized = blockLines.map((line) =>
+    line.trim() === '' ? '' : line.slice(minIndent).trimEnd()
+  );
+
+  // Literal block scalar: preserve line breaks.
+  if (/^\|[-+]?$/.test(indicator)) {
+    return normalized.join('\n').trim();
+  }
+
+  // Folded style (including "description:" followed by indented lines):
+  // collapse wrapped lines into one paragraph, keep blank-line paragraph breaks.
+  const folded = [];
+  let paragraph = [];
+
+  const flushParagraph = () => {
+    if (paragraph.length > 0) {
+      folded.push(paragraph.join(' '));
+      paragraph = [];
+    }
+  };
+
+  for (const line of normalized) {
+    if (line === '') {
+      flushParagraph();
+      if (folded.length > 0 && folded[folded.length - 1] !== '') {
+        folded.push('');
+      }
+      continue;
+    }
+    paragraph.push(line.trim());
+  }
+  flushParagraph();
+
+  return folded.join('\n').trim();
+}
+
+function unquote(value) {
+  if (
+    (value.startsWith('"') && value.endsWith('"')) ||
+    (value.startsWith("'") && value.endsWith("'"))
+  ) {
+    return value.slice(1, -1);
+  }
+  return value;
 }
 
 function findSkillDirs(dir) {
