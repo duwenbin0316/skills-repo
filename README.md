@@ -5,7 +5,7 @@ Private multi-skill repository template compatible with OpenSkills.
 Users can install skills directly from this repo:
 
 ```bash
-npx openskills install git@github.com:<your-org-or-user>/skills.git
+npx @team/openskills install git@github.com:<your-org-or-user>/skills.git
 ```
 
 ## Repository Layout
@@ -52,16 +52,17 @@ Then update the generated `SKILL.md` description so OpenSkills can trigger it co
 ## Private Repo Installation Notes
 
 - Use SSH install for private repositories:
-  - `npx openskills install git@github.com:<your-org-or-user>/skills.git`
+  - `npx @team/openskills install git@github.com:<your-org-or-user>/skills.git`
 - Example for this repository:
-  - `npx openskills install git@github.com:duwenbin0316/skills-repo.git`
+  - `npx @team/openskills install git@github.com:duwenbin0316/skills-repo.git`
+  - `npx @team/openskills install git@github.com:duwenbin0316/skills-repo.git --skill skill-creator`
 - HTTPS shorthand can still be used for public repositories:
-  - `npx openskills install <your-org-or-user>/skills`
+  - `npx @team/openskills install <your-org-or-user>/skills`
 
 After install, users can sync to their `AGENTS.md`:
 
 ```bash
-npx openskills sync
+npx @team/openskills sync
 ```
 
 ## Skills Static Page

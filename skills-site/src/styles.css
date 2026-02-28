@@ -419,6 +419,35 @@ body {
   -webkit-box-orient: vertical;
 }
 
+.card-actions {
+  margin-top: 10px;
+  display: flex;
+}
+
+.copy-install-btn {
+  width: 100%;
+  border: 1px solid #e0c8bc;
+  border-radius: 8px;
+  background: #fffaf8;
+  color: #a95a3f;
+  font-size: 12px;
+  padding: 6px 10px;
+  cursor: pointer;
+  transition: all 0.16s ease;
+}
+
+.copy-install-btn:hover {
+  border-color: #d39f89;
+  background: #fff3ee;
+  color: #96472f;
+}
+
+.copy-install-btn.copied {
+  border-color: #8fbf99;
+  background: #f2fbf3;
+  color: #2f7d44;
+}
+
 .desc-tooltip {
   position: absolute;
   left: 0;

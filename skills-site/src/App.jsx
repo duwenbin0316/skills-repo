@@ -2,6 +2,9 @@ import { useEffect, useMemo, useState } from 'react';
 import skills from './data/skills.json';
 import skillBriefZh from './data/skill-brief-zh.json';
 
+const INSTALL_PACKAGE = '@team/openskills';
+const INSTALL_SOURCE = 'git@github.com:duwenbin0316/skills-repo.git';
+
 const CATEGORY_LABELS = {
   all: '全部',
   opensource: '开源',
@@ -40,6 +43,7 @@ function App() {
   });
   const [query, setQuery] = useState('');
   const [activeCategory, setActiveCategory] = useState('all');
+  const [copiedSkillId, setCopiedSkillId] = useState(null);
 
   useEffect(() => {
     if (typeof window === 'undefined') return undefined;
@@ -114,6 +118,7 @@ function App() {
     const fullDescription = skill.description || '暂无描述';
     const briefZh =
       skill.category === 'opensource' ? skillBriefZh[skill.name] || '' : '';
+    const installCommand = `npx ${INSTALL_PACKAGE} install ${INSTALL_SOURCE} --skill ${skill.name}`;
 
     return (
       <article
@@ -146,6 +151,37 @@ function App() {
             中文：{briefZh}
           </p>
         ) : null}
+
+        <div className="card-actions">
+          <button
+            type="button"
+            className={`copy-install-btn ${copiedSkillId === skill.id ? 'copied' : ''}`}
+            onClick={async () => {
+              try {
+                if (navigator?.clipboard?.writeText) {
+                  await navigator.clipboard.writeText(installCommand);
+                } else {
+                  const textarea = document.createElement('textarea');
+                  textarea.value = installCommand;
+                  textarea.style.position = 'fixed';
+                  textarea.style.opacity = '0';
+                  document.body.appendChild(textarea);
+                  textarea.select();
+                  document.execCommand('copy');
+                  document.body.removeChild(textarea);
+                }
+                setCopiedSkillId(skill.id);
+                window.setTimeout(() => {
+                  setCopiedSkillId((current) => (current === skill.id ? null : current));
+                }, 1400);
+              } catch (_error) {
+                // Keep silent in UI and allow manual copy from tooltip/console.
+              }
+            }}
+          >
+            {copiedSkillId === skill.id ? '已复制安装命令' : '复制安装命令'}
+          </button>
+        </div>
       </article>
     );
   };
@@ -236,41 +272,45 @@ function App() {
         <h2>1. 安装 Skills</h2>
         <p>从你的私有 skills 仓库安装（默认安装到当前项目的 <code>.agent/skills</code>）。</p>
         <pre>
-          <code>npx openskills install git@github.com:duwenbin0316/skills-repo.git</code>
+          <code>{`npx ${INSTALL_PACKAGE} install ${INSTALL_SOURCE}`}</code>
         </pre>
         <p>如果要安装到全局目录（<code>~/.agent/skills</code>），使用：</p>
         <pre>
-          <code>npx openskills install git@github.com:duwenbin0316/skills-repo.git --global</code>
+          <code>{`npx ${INSTALL_PACKAGE} install ${INSTALL_SOURCE} --global`}</code>
+        </pre>
+        <p>只安装某一个 skill（按名称）：</p>
+        <pre>
+          <code>{`npx ${INSTALL_PACKAGE} install ${INSTALL_SOURCE} --skill skill-creator`}</code>
         </pre>
 
         <h2>2. 查看已安装 Skills</h2>
         <p>列出当前可用 skills：</p>
         <pre>
-          <code>npx openskills list</code>
+          <code>{`npx ${INSTALL_PACKAGE} list`}</code>
         </pre>
         <p>读取某个 skill 的指令内容：</p>
         <pre>
-          <code>npx openskills read &lt;skill-name&gt;</code>
+          <code>{`npx ${INSTALL_PACKAGE} read <skill-name>`}</code>
         </pre>
 
         <h2>3. 同步到 AGENTS.md</h2>
         <p>把已安装 skills 写入 AGENTS.md，供 Agent 自动发现：</p>
         <pre>
-          <code>npx openskills sync</code>
+          <code>{`npx ${INSTALL_PACKAGE} sync`}</code>
         </pre>
         <p>非交互全量同步：</p>
         <pre>
-          <code>npx openskills sync --yes</code>
+          <code>{`npx ${INSTALL_PACKAGE} sync --yes`}</code>
         </pre>
 
         <h2>4. 更新与移除</h2>
         <p>更新所有已安装 skills：</p>
         <pre>
-          <code>npx openskills update</code>
+          <code>{`npx ${INSTALL_PACKAGE} update`}</code>
         </pre>
         <p>移除指定 skill：</p>
         <pre>
-          <code>npx openskills remove &lt;skill-name&gt;</code>
+          <code>{`npx ${INSTALL_PACKAGE} remove <skill-name>`}</code>
         </pre>
 
         <h2>5. 站点数据刷新</h2>
@@ -342,7 +382,7 @@ function App() {
 
         <h2>6. 推荐检查命令</h2>
         <pre>
-          <code>{`npx openskills list\nnpx openskills read <skill-name>\ncd skills-site && npm run build`}</code>
+          <code>{`npx ${INSTALL_PACKAGE} list\nnpx ${INSTALL_PACKAGE} read <skill-name>\ncd skills-site && npm run build`}</code>
         </pre>
       </article>
     </section>
@@ -372,11 +412,6 @@ function App() {
               </a>
             ))}
           </nav>
-
-          <div className="sidebar-foot">
-            <span>总数：{skills.length}</span>
-            <span>分类：{totalCategories}</span>
-          </div>
         </aside>
 
         <main className="content">
