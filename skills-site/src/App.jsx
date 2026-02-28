@@ -350,7 +350,7 @@ function App() {
 
   return (
     <div className="mcp-layout">
-      <div className="top-strip">Skills 市场</div>
+      <div className="top-strip">Skills 市场 · 让经验沉淀为可复用能力</div>
       <div className="page-shell">
         <aside className="sidebar">
           <div className="sidebar-brand">

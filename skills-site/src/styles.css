@@ -21,6 +21,8 @@ body {
   color: var(--text);
   background: var(--bg);
   font-family: 'Noto Sans SC', 'PingFang SC', sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
 }
 
 .mcp-layout {
@@ -28,14 +30,16 @@ body {
 }
 
 .top-strip {
-  height: 34px;
+  min-height: 38px;
   background: linear-gradient(90deg, #15161a 0%, #1b2240 40%, #14161a 100%);
   color: #d8dbe5;
-  font-size: 12px;
+  font-size: 13px;
   display: flex;
   align-items: center;
   justify-content: center;
   letter-spacing: 0.03em;
+  text-align: center;
+  padding: 6px 12px;
 }
 
 .page-shell {
@@ -172,7 +176,7 @@ body {
 .hero-box p {
   margin: 14px 0 0;
   color: var(--muted);
-  font-size: 15px;
+  font-size: 16px;
 }
 
 .search-row {
@@ -185,7 +189,7 @@ body {
   border: 1px solid #dcbaac;
   border-radius: 9px;
   background: #fff;
-  font-size: 14px;
+  font-size: 15px;
   color: #3c4047;
   padding: 10px 12px;
   outline: none;
@@ -210,7 +214,7 @@ body {
   border-radius: 999px;
   background: #fff;
   color: #697084;
-  font-size: 12px;
+  font-size: 13px;
   padding: 5px 10px;
   cursor: pointer;
   transition: background-color 0.16s ease, color 0.16s ease, border-color 0.16s ease;
@@ -235,7 +239,7 @@ body {
   gap: 10px;
   flex-wrap: wrap;
   color: #858b95;
-  font-size: 12px;
+  font-size: 13px;
 }
 
 .skills-panel {
@@ -289,7 +293,7 @@ body {
 
 .skills-group-head span {
   color: #8a909a;
-  font-size: 12px;
+  font-size: 13px;
 }
 
 .skill-card {
@@ -357,7 +361,7 @@ body {
   display: block;
   margin-top: 5px;
   color: #8a909b;
-  font-size: 12px;
+  font-size: 13px;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -376,7 +380,7 @@ body {
   border-radius: 999px;
   background: var(--chip);
   color: #667089;
-  font-size: 11px;
+  font-size: 12px;
   letter-spacing: 0.05em;
   text-transform: uppercase;
   padding: 4px 8px;
@@ -392,7 +396,7 @@ body {
 .desc-wrap p {
   margin: 0;
   color: #5f6877;
-  font-size: 13px;
+  font-size: 14px;
   line-height: 1.6;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -406,7 +410,7 @@ body {
   padding-top: 8px;
   border-top: 1px dashed #e4e7ef;
   color: #4f5f7c;
-  font-size: 12px;
+  font-size: 13px;
   line-height: 1.55;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -450,7 +454,7 @@ body {
   border-radius: 999px;
   background: #f2f7ff;
   color: #3f629f;
-  font-size: 11px;
+  font-size: 12px;
   padding: 4px 9px;
 }
 
@@ -503,7 +507,7 @@ body {
 .markdown-doc p {
   margin: 8px 0 0;
   color: #5f6979;
-  font-size: 14px;
+  font-size: 15px;
   line-height: 1.62;
 }
 
@@ -512,7 +516,7 @@ body {
   margin: 10px 0 0;
   padding-left: 20px;
   color: #556073;
-  font-size: 14px;
+  font-size: 15px;
   line-height: 1.62;
 }
 
@@ -522,7 +526,7 @@ body {
   background: #f2f4f9;
   border: 1px solid #e3e7f0;
   color: #34435f;
-  font-size: 12px;
+  font-size: 13px;
   font-family: 'SFMono-Regular', Menlo, Monaco, Consolas, monospace;
   overflow-wrap: anywhere;
   word-break: break-word;
@@ -541,7 +545,7 @@ body {
   padding: 0;
   border: 0;
   background: transparent;
-  font-size: 12px;
+  font-size: 13px;
   color: #26364f;
 }
 
@@ -561,13 +565,13 @@ body {
 
 .zh-brief-item h3 {
   margin: 0;
-  font-size: 13px;
+  font-size: 14px;
   line-height: 1.35;
 }
 
 .zh-brief-item p {
   margin-top: 8px;
-  font-size: 13px;
+  font-size: 14px;
   line-height: 1.6;
 }
 
