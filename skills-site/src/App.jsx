@@ -134,10 +134,14 @@ function App() {
                 <div className="skill-head">
                   <div className="skill-avatar">{skill.name.slice(0, 1).toUpperCase()}</div>
                   <div className="skill-title-wrap">
-                    <h3>{skill.name}</h3>
-                    <span>{skill.path}</span>
+                    <h3 title={skill.name}>{skill.name}</h3>
+                    <span title={skill.path}>{skill.path}</span>
                   </div>
+                </div>
+
+                <div className="badge-row">
                   <span className="category-pill">{skill.category}</span>
+                  {skill.team ? <span className="meta">team: {skill.team}</span> : null}
                 </div>
 
                 <div className="desc-wrap">
@@ -145,10 +149,6 @@ function App() {
                   <div className="desc-tooltip" role="tooltip">
                     {fullDescription}
                   </div>
-                </div>
-
-                <div className="meta-row">
-                  {skill.team ? <span className="meta">team: {skill.team}</span> : null}
                 </div>
               </article>
             );
