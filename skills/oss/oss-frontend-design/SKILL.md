@@ -1,5 +1,5 @@
 ---
-name: frontend-design
+name: oss-frontend-design
 description: Design and refine web or React frontends with clear visual hierarchy, component structure, and implementation-ready guidance. Use when asked to design new pages, improve UI/UX quality, restructure layout, define design tokens, or turn product requirements into concrete frontend implementation plans.
 ---
 
