@@ -90,7 +90,7 @@ function App() {
   const browseView = (
     <>
       <section className="hero-box rise-in">
-        <h1>Skills 市场：发现适合你 Agent 工作流的能力包</h1>
+        <h1>Skills 市场</h1>
         <p>统一管理开源与内部 skills，支持搜索、分类筛选和快速浏览。</p>
 
         <div className="search-row">
