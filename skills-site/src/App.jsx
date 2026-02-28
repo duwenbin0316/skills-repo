@@ -132,6 +132,8 @@ function App() {
         <div className="skills-grid">
           {filteredSkills.map((skill, index) => {
             const fullDescription = skill.description || 'No description';
+            const briefZh =
+              skill.category === 'opensource' ? skillBriefZh[skill.name] || '' : '';
 
             return (
               <article
@@ -158,6 +160,12 @@ function App() {
                     {fullDescription}
                   </div>
                 </div>
+
+                {briefZh ? (
+                  <p className="skill-brief-zh" title={briefZh}>
+                    中文：{briefZh}
+                  </p>
+                ) : null}
               </article>
             );
           })}

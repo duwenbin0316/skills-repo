@@ -376,6 +376,20 @@ body {
   -webkit-box-orient: vertical;
 }
 
+.skill-brief-zh {
+  margin: 10px 0 0;
+  padding-top: 8px;
+  border-top: 1px dashed #e4e7ef;
+  color: #4f5f7c;
+  font-size: 12px;
+  line-height: 1.55;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
 .desc-tooltip {
   position: absolute;
   left: 0;
