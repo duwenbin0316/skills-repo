@@ -428,9 +428,12 @@ body {
 
 .markdown-page {
   margin-top: 24px;
+  display: flex;
+  justify-content: center;
 }
 
 .markdown-doc {
+  width: min(960px, 100%);
   max-width: 960px;
   border: 1px solid #e5e7ed;
   border-radius: 14px;
