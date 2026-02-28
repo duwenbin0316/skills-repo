@@ -4,7 +4,7 @@
   "version": "0.1.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
+    "dev": "npm run skills:sync && vite",
     "build": "npm run skills:sync && vite build",
     "preview": "vite preview",
     "skills:sync": "node scripts/generate-skills-json.mjs"
