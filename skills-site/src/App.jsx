@@ -128,7 +128,7 @@ function App() {
             return (
               <article
                 className="skill-card rise-in"
-                key={skill.id}
+                key={`${activeCategory}-${skill.id}`}
                 style={{ animationDelay: `${index * 0.02 + 0.05}s` }}
               >
                 <div className="skill-head">
