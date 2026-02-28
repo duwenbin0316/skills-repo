@@ -13,7 +13,11 @@ npx openskills install git@github.com:<your-org-or-user>/skills.git
 ```text
 skills/
 ├── opensource/                  # Open-source general skills
-│   └── skill-creator/
+│   ├── algorithmic-art/
+│   ├── docx/
+│   ├── pdf/
+│   ├── skill-creator/
+│   └── ... (synced from anthropics/skills)
 └── internal/                    # Internal company skills
     ├── apollo/                  # Frontend team
     │   └── cmbc-apollo-<skill-name>/
@@ -22,6 +26,8 @@ skills/
 ```
 
 OpenSkills discovers every directory that contains a `SKILL.md`, so adding a new folder with `SKILL.md` makes it installable.
+
+`opensource` currently mirrors the `skills/` directory from `https://github.com/anthropics/skills`.
 
 ## Naming Convention
 
