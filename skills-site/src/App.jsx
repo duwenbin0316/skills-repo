@@ -15,8 +15,8 @@ const CATEGORY_GROUP_TITLES = {
 
 const MENU_ITEMS = [
   { key: 'home', label: '首页', hash: '#/' },
-  { key: 'usage', label: 'Skills 使用文档', hash: '#/usage' },
-  { key: 'contrib', label: 'Skills 贡献文档', hash: '#/contrib' },
+  { key: 'usage', label: '使用 Skills', hash: '#/usage' },
+  { key: 'contrib', label: '贡献 Skills', hash: '#/contrib' },
 ];
 
 function getMenuFromHash(hash) {

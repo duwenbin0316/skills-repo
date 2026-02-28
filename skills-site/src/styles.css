@@ -524,6 +524,8 @@ body {
   color: #34435f;
   font-size: 12px;
   font-family: 'SFMono-Regular', Menlo, Monaco, Consolas, monospace;
+  overflow-wrap: anywhere;
+  word-break: break-word;
 }
 
 .markdown-doc pre {
@@ -628,10 +630,23 @@ body {
   }
 
   .markdown-doc {
+    width: 100%;
+    max-width: 100%;
     padding: 16px;
+    overflow-x: hidden;
   }
 
   .markdown-doc h1 {
     font-size: 25px;
+  }
+
+  .markdown-doc pre {
+    overflow-x: hidden;
+  }
+
+  .markdown-doc pre code {
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
+    word-break: break-word;
   }
 }
