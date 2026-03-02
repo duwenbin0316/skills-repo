@@ -3,7 +3,6 @@ import skills from './data/skills.json';
 import skillBriefZh from './data/skill-brief-zh.json';
 
 const INSTALL_PACKAGE = '@team/openskills';
-const INSTALL_SOURCE = 'git@github.com:duwenbin0316/skills-repo.git';
 
 const CATEGORY_LABELS = {
   all: '全部',
@@ -111,7 +110,7 @@ function App() {
     const fullDescription = skill.description || '暂无描述';
     const briefZh =
       skill.category === 'opensource' ? skillBriefZh[skill.name] || '' : '';
-    const installCommand = `npx ${INSTALL_PACKAGE} install ${INSTALL_SOURCE} --skill ${skill.name}`;
+    const installCommand = `npx ${INSTALL_PACKAGE} install --skill ${skill.name}`;
 
     return (
       <article
@@ -263,17 +262,21 @@ function App() {
         </p>
 
         <h2>1. 安装 Skills</h2>
-        <p>从你的私有 skills 仓库安装（默认安装到当前项目的 <code>.agent/skills</code>）。</p>
+        <p>从默认仓库安装（默认安装到当前项目的 <code>.agent/skills</code>）。</p>
         <pre>
-          <code>{`npx ${INSTALL_PACKAGE} install ${INSTALL_SOURCE}`}</code>
+          <code>{`npx ${INSTALL_PACKAGE} install`}</code>
         </pre>
         <p>如果要安装到全局目录（<code>~/.agent/skills</code>），使用：</p>
         <pre>
-          <code>{`npx ${INSTALL_PACKAGE} install ${INSTALL_SOURCE} --global`}</code>
+          <code>{`npx ${INSTALL_PACKAGE} install --global`}</code>
         </pre>
         <p>只安装某一个 skill（按名称）：</p>
         <pre>
-          <code>{`npx ${INSTALL_PACKAGE} install ${INSTALL_SOURCE} --skill skill-creator`}</code>
+          <code>{`npx ${INSTALL_PACKAGE} install --skill skill-creator`}</code>
+        </pre>
+        <p>如果你要从非默认仓库安装，可以显式指定源地址：</p>
+        <pre>
+          <code>{`npx ${INSTALL_PACKAGE} install git@github.com:duwenbin0316/skills-repo.git --skill skill-creator`}</code>
         </pre>
 
         <h2>2. 查看已安装 Skills</h2>
